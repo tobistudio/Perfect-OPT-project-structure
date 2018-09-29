@@ -95,12 +95,12 @@ test('error message shown when trying to decrement after zero', () => {
   const counter = 0;
   const wrapper = setup(null, { counter });
 
-  // Find button and click
+  // Click decrement button
   const button = findByTestAttr(wrapper, 'decrement-button');
   button.simulate('click');
   wrapper.update();
 
-  // Find error message and make sure it's displayed
+  // Make sure error message is displayed
   const errorMessage = findByTestAttr(wrapper, 'error-message');
   expect(errorMessage.length).toBe(1);
 });
@@ -119,7 +119,7 @@ test('remove error message when increment button is clicked again', () => {
   button.simulate('click');
   wrapper.update();
 
-  // Find error message and make sure it's displayed
+  // Make sure error message goes away
   const errorMessage = findByTestAttr(wrapper, 'error-message');
   expect(errorMessage.length).toBe(0);
 });
