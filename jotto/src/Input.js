@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { guessWord } from "./actions";
 
-class Input extends React.Component {
+export class UnconnectedInput extends React.Component {
   render() {
     const contents = this.props.success ? null : (
       <form className="form-inline">
@@ -15,6 +16,7 @@ class Input extends React.Component {
         <button
           type="submit"
           className="btn btn-primary mb-2"
+          onClick={() => this.props.guessWord("train")}
           data-test="submit-button"
         >
           Submit
@@ -30,4 +32,7 @@ const mapStateToProps = ({ success }) => {
   return { success };
 };
 
-export default connect(mapStateToProps)(Input);
+export default connect(
+  mapStateToProps,
+  { guessWord } // Shortcut instead of using mapDispatchToProps
+)(UnconnectedInput);
